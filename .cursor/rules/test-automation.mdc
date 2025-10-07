@@ -1,0 +1,126 @@
+---
+alwaysApply: true
+---
+## Playwright UI Testing Rules for chess.com
+
+### Overall goals
+
+- Write fast, reliable, maintainable UI tests using Playwright.
+- Keep tests DRY using the Page Object Pattern (POP) and helper methods.
+- Default to mocking network responses for UI tests; reserve true E2E for critical flows only.
+- Prefer accessible and resilient selectors; avoid brittle CSS/xPath.
+- Keep assertions in test files; encapsulate actions in page objects.
+- Reduce flakiness via Playwright auto-wait, robust locators, and explicit expectations.
+
+### Repository conventions
+
+- **Tests**:
+  - UI tests (mocked) live under `tests/ui`
+  - E2E tests (live backend) live under `tests/e2e`
+- **Page objects** live under `src/pages` (one class per page or major component)
+- **Helpers/fixtures** live under `src/helpers` and `src/fixtures`
+- **Mock data and route handlers** live under `src/mocks`
+- **Shared types and constants** under `src/shared`
+- **Config** in `playwright.config.ts`; define separate projects:
+  - `ui-mocked`: default, uses `route.fulfill()` to mock backend
+  - `e2e-live`: critical flows only, uses real backend
+- Use TypeScript throughout. Keep strict typing and clear method signatures.
+
+### Test organization
+
+- **UI (mocked) tests** live under `tests/ui` and are tagged with "[ui]" in titles. They mock network requests and validate user-visible behavior across components.
+- **End-to-End (E2E) tests** live under `tests/e2e` and are tagged with "[e2e]". They use the real backend and are reserved for critical flows only.
+- **Shared between both**:
+  - `src/pages`: Page Objects with resilient locators and encapsulated actions
+  - `src/helpers`: domain helpers for reusable flows
+  - `src/fixtures`: extended fixtures (auth, pages, mocks)
+  - `src/mocks`: payload factories and route handlers (used by UI tests)
+  - `src/shared`: types/constants consumed by tests and helpers
+  - `playwright.config.ts`: declares `ui-mocked` and `e2e-live` projects
+
+### When adding or editing tests
+
+- Choose test type intentionally:
+  - UI test (default): mock backend calls; tests user-visible behavior across components.
+  - E2E test: only for critical user flows; no mocks; minimize external service usage unless cost prohibits.
+- Always add or update relevant page object methods rather than duplicating steps in tests.
+- Prefer reusable helper fixtures for login, navigation, and seeding.
+- Keep tests small and focused; each test must assert user-visible outcomes or URL changes.
+- Do not share state across tests; each test should be independently runnable.
+
+### Page Object Pattern rules
+
+- Each page object:
+  - `constructor(page: Page)` and typed `Locator` fields initialized in constructor.
+  - Public methods represent user actions (e.g., `login`, `openSettings`, `startGame`) and small flows; no test assertions inside these methods.
+  - Provide optional expectation helpers (e.g., `expectGameStarted`) if reusable; keep most expects in tests.
+- Use Playwright Locators (`page.getByRole`, `getByLabel`, `getByTestId`) for all elements; never use `page.$`, `page.$$` or xPath.
+- Hide selector strings inside page objects; tests call methods only.
+- Encapsulate waiting by relying on auto-wait and explicit `await expect(locator).toBeVisible()` before interacting.
+- Naming: methods should be imperative and business-centric: `makeMove`, `resignGame`, `openProfile`, `changeTheme`.
+- Avoid returning raw locators; return `void` or the next page object where a navigation occurs.
+
+### Selectors
+
+Priority order:
+
+1. Accessible queries: `getByRole`, `getByLabel`, `getByText` (with exactness and scopes).
+2. `data-testid` (only if accessible queries are not feasible).
+3. CSS selectors scoped via `Locator`, never global or brittle chains.
+
+Never use xPath. Never rely on dynamic indexes or long `nth-child` chains.
+Add `data-testid` to the app only when necessary and stable.
+
+### Assertions and waiting
+
+- Prefer `await expect(locator).toBeVisible()`, `toHaveText`, `toHaveURL`, `toHaveAttribute`, etc.
+- Avoid `waitForTimeout`. If timing is necessary, prefer expect-polling patterns (e.g., `await expect(locator).toHaveText(/.../)`).
+- Use `test.step` to annotate multi-part flows for readability and traceability.
+- Use `expect.soft` only for non-critical checks; default to hard expects.
+
+### Mocking and test data
+
+- UI tests must mock network requests via `context.route` or `page.route`; use `route.fulfill` with static JSON or helper factories.
+- Place reusable mock payloads in `src/mocks`; export factories that create realistic data.
+- Seed user state via `APIRequestContext` when appropriate (e.g., create a game or set preferences) rather than clicking through setup in each test.
+- Disable unnecessary animations in test config where possible; consider prefers-reduced-motion.
+- For `e2e-live`, no `route.fulfill`; instead use real services and pre-seeded env data. Keep flows short and stable.
+
+### Fixtures and helpers
+
+- Extend Playwright test with custom fixtures in `src/fixtures`:
+  - `auth`: logs in via API and provides `storageState`
+  - `pages`: returns instantiated page objects per test
+  - `mocks`: registers default route handlers for common endpoints
+- Helpers in `src/helpers` for domain actions reused across tests (e.g., `startNewGame`, `inviteFriend`, `acceptChallenge`).
+- Keep helpers stateless and idempotent; pass deps explicitly.
+
+### Tagging and test selection
+
+- Use projects for selection (`ui-mocked` vs `e2e-live`).
+- Additionally, include markers in test titles: `[ui]` or `[e2e]` at the start for easy grep filtering.
+- Group related tests with `test.describe` and use `test.beforeEach` to set baseline state.
+
+### CI rules
+
+- Run `ui-mocked` project on every PR (fast and stable).
+- Run `e2e-live` project on a scheduled basis or before release; retry policy enabled; artifacts retained.
+- Fail fast for `e2e-live`; report flaky tests with metadata and disable only after triage.
+
+### Do not do list
+
+- Do not use `page.waitForTimeout` except as a last resort in narrowly-scoped helper methods with justification.
+- Do not put assertions inside page object action methods.
+- Do not hardcode credentials or environment URLs in tests; use env variables and config.
+- Do not depend on prior tests; no hidden coupling or ordered execution assumptions.
+- Do not use `console.log` for verification; use `expect` assertions.
+
+### PR checklist
+
+- Test type chosen correctly (UI vs E2E).
+- Page object added/updated instead of duplicating logic in tests.
+- Selectors resilient and accessible-first; no xPath.
+- Mocks live in `src/mocks` with reusable factories.
+- Tests contain clear expects for user-visible outcomes.
+- Documentation updated if new flows or pages introduced.
+- Local run: `npx playwright test` passes for `ui-mocked`; `e2e-live` runs in CI only.

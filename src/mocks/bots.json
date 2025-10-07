@@ -1,0 +1,28 @@
+{
+  "bots": [
+    {
+      "id": "martin-lecter-bot",
+      "name": "Martin-Lecter-BOT",
+      "rating": 350,
+      "group": "Halloween",
+      "imageUrl": "https://example.com/martin-lecter-bot.png",
+      "description": "Hello, Clarice. I hope you…oh, sorry! Was expecting someone else."
+    },
+    {
+      "id": "check-the-clown-bot",
+      "name": "Check-The-Clown-BOT",
+      "rating": 400,
+      "group": "Halloween",
+      "imageUrl": "https://example.com/check-the-clown-bot.png",
+      "description": "Want to play a game?"
+    },
+    {
+      "id": "edith-bot",
+      "name": "Edith-BOT",
+      "rating": 300,
+      "group": "Halloween",
+      "imageUrl": "https://example.com/edith-bot.png",
+      "description": "I'm here to help you learn!"
+    }
+  ]
+}

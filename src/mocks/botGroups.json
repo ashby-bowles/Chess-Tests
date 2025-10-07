@@ -1,0 +1,106 @@
+{
+  "botGroups": [
+    {
+      "uuid": "814d6d9a-933a-11f0-bfbf-a964d9326e58",
+      "name": "Halloween",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": [
+        {
+          "uuid": "bot-martin-lecter-uuid",
+          "name": "Martin-Lecter-BOT",
+          "rating": 350,
+          "imageUrl": "https://images.chesscomfiles.com/uploads/v1/user/483989349.f7292c5f.384x384o.85c51784f515.png",
+          "group": "Halloween",
+          "speech": "Hello, Clarice. I hope you…oh, sorry! Was expecting someone else."
+        }
+      ]
+    },
+    {
+      "uuid": "364612f6-dc0d-11ee-b90b-5b4d44511ebb",
+      "name": "Adaptive",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": []
+    },
+    {
+      "uuid": "40cf6f24-dc0d-11ee-8622-3d4aea3fc9b0",
+      "name": "Beginner",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": [
+        {
+          "uuid": "bot-beginner-uuid",
+          "name": "Beginner-Bot",
+          "rating": 200,
+          "imageUrl": "https://images.chesscomfiles.com/uploads/v1/user/483989349.f7292c5f.384x384o.85c51784f515.png",
+          "group": "Beginner",
+          "speech": "Hello! I'm a beginner bot. Let's play a friendly game!"
+        }
+      ]
+    },
+    {
+      "uuid": "9defd61c-dc0d-11ee-b85f-c1a29baf5237",
+      "name": "Intermediate",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": []
+    },
+    {
+      "uuid": "abaf0160-dc0d-11ee-a473-ef9f9a6c2e55",
+      "name": "Advanced",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": []
+    },
+    {
+      "uuid": "b87e7f56-dc0d-11ee-96e9-635dc6d809cc",
+      "name": "Master",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": []
+    },
+    {
+      "uuid": "cf3be35a-dc0d-11ee-93af-3fc0453ac29a",
+      "name": "Athletes",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": []
+    },
+    {
+      "uuid": "79f59b54-21f7-11ef-88f4-d9bc248e4c95",
+      "name": "Musicians",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": []
+    },
+    {
+      "uuid": "d4c8de40-dc0d-11ee-b4d7-014bac79b5c3",
+      "name": "Creators",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": []
+    },
+    {
+      "uuid": "d9eeda32-dc0d-11ee-ac0f-9168e628a9f5",
+      "name": "Top Players",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": []
+    },
+    {
+      "uuid": "f1616478-dc0d-11ee-98f0-59c1f6d1116b",
+      "name": "Personalities",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": []
+    },
+    {
+      "uuid": "f6d54172-dc0d-11ee-843b-ff5d5db363e8",
+      "name": "Engine",
+      "clubUuid": "",
+      "avatar": "",
+      "bots": []
+    }
+  ]
+}

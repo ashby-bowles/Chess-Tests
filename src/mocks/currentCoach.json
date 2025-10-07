@@ -1,0 +1,44 @@
+{
+  "currentCoach": {
+    "id": "377706c2-d0a4-11ee-b135-19f9e53c40f5",
+    "name": "David",
+    "titledName": "Coach David",
+    "imageUrl": "https://assets-coaches.chess.com/image/coachdavid.png",
+    "voiceId": "David_coach",
+    "country": {
+      "id": 112,
+      "name": "Poland",
+      "nameLocalized": "Poland",
+      "code": "PL"
+    },
+    "locale": "en-US",
+    "textId": "Generic_coach",
+    "analyticsId": "David",
+    "iconUrl": "https://assets-coaches.chess.com/image/coachdavid-icon.png",
+    "taglines": [
+      {
+        "text": "Hi, I'm Coach David. I'm here to teach you all about chess.",
+        "audioUrlHash": "6547b8d0c97cd470556c1cab780d520750e1474f9566199395fd640507931de8"
+      },
+      {
+        "text": "Hi, I'm David. Choose me and I'll help you learn chess.",
+        "audioUrlHash": "9832627e2cda323b688b74ede987fd4c745f7fe783abb3ae5318ca992f7e4cac"
+      },
+      {
+        "text": "Hi, Coach David here! I'm ready to share my chess knowledge with you.",
+        "audioUrlHash": "610cfa1e64c35239e146232c1871ac27c9effcea9f0d1f1c09a23307498f7be1"
+      },
+      {
+        "text": "David is my name, coaching is my game. Choose me!",
+        "audioUrlHash": "cfc736c0df6ab8438427e5df841f849800a16690668fce360a5aeda99a50860d"
+      },
+      {
+        "text": "Hey, I'm David. Will you be my student?",
+        "audioUrlHash": "81aeedf142fd51b73d201f0ed9814f36536a2e6f1357bbcdf413b3d4251bd9a8"
+      }
+    ],
+    "i18nMeta": {
+      "languageIndicator": ""
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "botName": "Martin-Lecter-BOT",
+  "messages": [
+    "Hello, Clarice. I hope you…oh, sorry! Was expecting someone else.",
+    "Let's play a game of chess, shall we?",
+    "I'm ready when you are. Make your move.",
+    "Interesting strategy. Let me think about this...",
+    "Checkmate! Better luck next time."
+  ],
+  "rating": 350,
+  "personality": "Halloween"
+}
