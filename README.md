@@ -1,4 +1,7 @@
+
 ## Overview
+
+![Chess Robot](chess.png)
 
 This repo contains Playwright tests to validate some basic functionality Chess.com, along with some non-functional A11y tests. My intention is to illustrate some testing strategies and organization that are effective for managing a test suite. In here I will also describe some high level strategies that include testing at different layers of the application not included in this repo such as unit, component, and integration tests.
 
