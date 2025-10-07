@@ -1,12 +1,8 @@
 ## Overview
 
-This repository contains Playwright-based automated UI tests for chess.com.
-We follow a testing pyramid approach: most UI tests run with mocked backend responses; only critical user flows are covered by true end-to-end tests against live services.
-Tests are organized with the Page Object Pattern and shared helpers to ensure DRY, maintainable code.
+This repo contains Playwright tests to validate some basic functionality Chess.com, along with some non-functional A11y tests. My intention illustrate some testing strategies and organization that are effective for managing a test suite. In here I will also describe some high level stratetgies that include testing at different layers of the application not included in this repo such as unit, component, and integration tests.
 
 ## Test definitions
-
-(Adapted from Team Hyraxes)
 
 - **Unit Test**: tests a single function; uses mocks freely. Lives with source code (not in this repo).
 - **Component Test**: tests a small feature/module in isolation with minimal internal mocking. Lives with source code (not in this repo).
@@ -22,7 +18,7 @@ Tests are organized with the Page Object Pattern and shared helpers to ensure DR
 ## Responsibilities
 
 - **Developers**: write unit/component tests in app repos; contribute UI tests here for new or changed features.
-- **Test Engineers**: design and maintain critical E2E flows; help stabilize flake; curate mocks and fixtures.
+- **Test Engineers**: design and maintain critical E2E/UI flows; help stabilize flake; curate mocks and fixtures.
 - **Cadence**: create UI tests judiciously for main features (every PR); run E2E less frequently (scheduled or pre-release).
 
 ## Repository structure
